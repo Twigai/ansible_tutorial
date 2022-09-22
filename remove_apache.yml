@@ -4,19 +4,24 @@
   become: true
   tasks:
 
-  - name: remove apache2 and php packages - Ubuntu
+  - name: remove testing packages - Ubuntu
     apt:
       name: 
         - apache2
         - libapache2-mod-php
+        - mariadb-serve
+        - samba
       state: absent
-    when: ansible_distribution in ["Debian", "Ubuntu"]
+    when: ansible_distribution == "Ubuntu"
 
-  - name: remove apache2 and php packages - CentOS
+  - name: remove testing packages - CentOS
     dnf:
       name: 
         - httpd
         - php
+        - miriadb
+        - samba
       state: absent
     when: ansible_distribution == "CentOS"
+
 
